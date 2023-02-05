@@ -8,35 +8,37 @@ $(function() {
         }
     });
 
-    var canvas = document.getElementById('paint');
-    var context = canvas.getContext('2d');
+    // declare variables
+        // painting erasing or not
+        // painting or erasing
+        // get the canvas and context
+        // get the canvas container
+        // mouse position
 
-    // draw a line
-    // declare new path
-    context.beginPath();
+    // onload load saved work from local storage
 
-    // set line width
-    context.lineWidth = 40;
+    // set drawing parameters (lineWidth, lineJoin, lineCap)
 
-    // set line color
-    context.strokeStyle = '#42e565';
+    // click inside container
 
-    // set cap to the line (round, butt, square)
-    context.lineCap = 'round';
+    // move the mouse while holding mouse key
 
-    // set line join style (bevel, round, miter)
-    context.lineJoin = 'round'; 
+    // mouse up => we are not painting erasing anymore
 
-    // position the context point
-    context.moveTo(50, 50);
+    // if we leave the container we are not painting erasing anymore
 
-    // draw a straight line from starting point to a new position
-    context.lineTo(200, 200);
+    // click on the reset button
 
-    // draw another line
-    context.lineTo(400, 100);
+    // click on save button
 
-    // make line visible
-    context.stroke();
+    // click on the erase button
+
+    // change color input
+
+    // change lineWidth using slider
+
+    // functions
+
+    
 
 });
