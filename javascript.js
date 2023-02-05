@@ -1,44 +1,57 @@
-$(function() {
-    $('#slider').slider({
-        min: 3,
-        max: 30,
-        slide: function(event, ui) {
-            $('#circle').width(ui.value);
-            $('#circle').height(ui.value);
-        }
-    });
+$(function () {
+  $("#slider").slider({
+    min: 3,
+    max: 30,
+    slide: function (event, ui) {
+      $("#circle").width(ui.value);
+      $("#circle").height(ui.value);
+    },
+  });
 
-    // declare variables
-        // painting erasing or not
-        // painting or erasing
-        // get the canvas and context
-        // get the canvas container
-        // mouse position
+  // declare variables
+  // painting erasing or not
+  var paint = false;
 
-    // onload load saved work from local storage
+  // painting or erasing
+  var paint_erase = "paint";
 
-    // set drawing parameters (lineWidth, lineJoin, lineCap)
+  // get the canvas and context
+  var canvas = document.getElementById("paint");
+  var ctx = canvas.getContext("2d");
 
-    // click inside container
+  // get the canvas container
+  var container = $("#container");
 
-    // move the mouse while holding mouse key
+  // mouse position
+  var mouse = { x: 0, y: 0 };
 
-    // mouse up => we are not painting erasing anymore
+  // onload load saved work from local storage
 
-    // if we leave the container we are not painting erasing anymore
+  // set drawing parameters (lineWidth, lineJoin, lineCap)
+  ctx.lineWidth = 3;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
 
-    // click on the reset button
+  // click inside container
+  container.mousedown(function() {
+      paint = true;
+      window.alert(paint);
+  });
+  // move the mouse while holding mouse key
 
-    // click on save button
+  // mouse up => we are not painting erasing anymore
 
-    // click on the erase button
+  // if we leave the container we are not painting erasing anymore
 
-    // change color input
+  // click on the reset button
 
-    // change lineWidth using slider
+  // click on save button
 
-    // functions
+  // click on the erase button
 
-    
+  // change color input
 
+  // change lineWidth using slider
+
+  // functions
 });
