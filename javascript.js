@@ -1,13 +1,4 @@
 $(function () {
-  $("#slider").slider({
-    min: 3,
-    max: 30,
-    slide: function (event, ui) {
-      $("#circle").width(ui.value);
-      $("#circle").height(ui.value);
-    },
-  });
-
   // declare variables
   // painting erasing or not
   var paint = false;
@@ -26,6 +17,13 @@ $(function () {
   var mouse = { x: 0, y: 0 };
 
   // onload load saved work from local storage
+  if (localStorage.getItem("imgCanvas") != null) {
+    var img = new Image();
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = localStorage.getItem("imgCanvas");
+  }
 
   // set drawing parameters (lineWidth, lineJoin, lineCap)
   ctx.lineWidth = 3;
@@ -48,7 +46,7 @@ $(function () {
     if (paint == true) {
       if (paint_erase == "paint") {
         // get color input
-        ctx.strokeStyle = "red";
+        ctx.strokeStyle = $('#paintColor').val();
       } else {
         // white color
         ctx.strokeStyle = "white";
@@ -71,11 +69,18 @@ $(function () {
   // click on the reset button
   $("#reset").click(function () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    paint_erase = 'paint';
-    $('#erase').removeClass('eraseMode');
+    paint_erase = "paint";
+    $("#erase").removeClass("eraseMode");
   });
 
   // click on save button
+  $("#save").click(function () {
+    if (typeof localStorage != null) {
+      localStorage.setItem("imgCanvas", canvas.toDataURL());
+    } else {
+      window.alert("Your browser does not support local storage!");
+    }
+  });
 
   // click on the erase button
   $("#erase").click(function () {
@@ -88,8 +93,18 @@ $(function () {
   });
 
   // change color input
+  $('#paintColor').change(function() {
+    $('#circle').css('background-color', $(this).val());
+  });
 
   // change lineWidth using slider
-
-  // functions
+  $("#slider").slider({
+    min: 3,
+    max: 30,
+    slide: function (event, ui) {
+      $("#circle").width(ui.value);
+      $("#circle").height(ui.value);
+      ctx.lineWidth = ui.value;
+    },
+  });
 });
